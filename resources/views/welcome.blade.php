@@ -3,8 +3,8 @@
 <head>
 <title>Shopping Buddy</title>
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
+<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,7 +39,15 @@
 					<li><a href="#how_works">¿Cómo funciona?</a></li>
 					<li><a href="#plans">Planes</a></li>
 					<li><a href="#" data-toggle="modal" data-target="#myModalC">Contáctanos</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#myModal4">Inicia sesión</a></li>
+					
+						@if(Auth::user())
+							<li><a href="{{url('/home')}}" >Mi cuenta</a></li>
+						@else
+							<li><a href="#" data-toggle="modal" data-target="#myModal4">Inicia sesión</a></li>
+						@endif
+
+						
+						
 				</ul>
 						<!-- script-for-menu -->
 						 <script>
@@ -270,7 +278,7 @@
 										<hr>
 										<div class="text-center profile-gd grid_two">
 											<h5>¿Qué esperas?</h5>
-											<a href="single.html">CÓMPRALO AHORA</a>
+											<a href="single.html">OBTENER AHORA</a>
 										</div>
 								  </div>
 								</div>
@@ -318,7 +326,7 @@
 										<form id="login-form" method="POST" action="{{ route('login') }}">
 											{{ csrf_field() }}
 											<h3>Inicia sesión </h3>
-											<span class="error">
+											<span class="error error-login">
 											</span>
 											<input name="email" placeholder="Email" type="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required>	
 												
@@ -339,7 +347,7 @@
 				</div>
 			</div>
 			<!-- //login -->
-			<!-- signup -->
+			<!-- REGISTER -->
 			<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content modal-info">
@@ -349,19 +357,25 @@
 						<div class="modal-body modal-spa">
 							<div class="login-grids">
 								<div class="login">
-									<div class="login-left">
-										<ul>
-											<li><a class="fb" href="#"><i></i>Inicia sesión</a></li>
-											<li><a class="goog" href="#"><i></i>Inicia sesión</a></li>
-											<li><a class="linkin" href="#"><i></i>Inicia sesión</a></li>
-										</ul>
-									</div>
-									<div class="login-right">
-										<form>
+									<div style="width:100% !important;" class="login-right">
+										<form id="register-form">
+										{{ csrf_field() }}
 											<h3>Crea tu cuenta </h3>
-											<input type="text" paceholder="Nombre" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-											<input type="email" placeholder="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">	
-											<input type="password" placeholder="******" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">	
+											<span class="error error-register">
+											</span>
+											<input type="text" placeholder="Nombre" name="name" required>
+											<input type="text" name="last_name" placeholder ="Apellidos" required>
+											<input type="email" placeholder="Email" name="email" required>	
+											<input style="width: 49.6% !important;" type="password" placeholder="Contraseña" name="password" required>	
+											<input style="width: 49.6% !important;" type="password" placeholder="Confirmar contraseña" name="password_confirmation" required>	
+											<label style="color:black; margin-bottom: 0; margin-top: 5px;">Fecha de nacimiento:</label>
+											<input name="birthday" style="margin-top: 0;" type="date" required>
+											<select name="gender">
+												<option selected disabled value="">Género (opcional)</option> 
+												<option value="1">Hombre</option> 
+												<option value="2">Mujer</option> 
+												<option value="3">Otro</option> 
+											</select>
 											
 											<input type="submit" value="CREATE ACCOUNT" >
 										</form>
@@ -372,7 +386,7 @@
 								<p>Al iniciar sesión aceptas nuestros <span>Términos y condiciones</span> y <span>Política de Privacidad</span></p>
 							</div>
 						</div>
-					</div>
+					<!--</div>-->
 				</div>
 			</div>
 			<!-- //signup -->
@@ -421,7 +435,7 @@
 <script src="{{asset('js/jquery.countup.js')}}"></script>
 <script>
 		$('.counter').countUp();
-		$(document).ready(function(){}
+		$(document).ready(function(){
 		
 		//Register Form
 			$('#register-form').on('submit', function(e){
@@ -439,17 +453,22 @@
 					},
 				})
 				.done(function(data){
-					alert('this is where we redirect');
-					return false;
+					window.location.href = '/home';
 				})
-				.fail(function(data){
-					var error = data.responseJSON;
-					$('.error').html('');
+				.fail(function(xhr){
+					if(xhr.status == 200){
+						window.location.href = '/home';
+					}
+					
+					var error = xhr.responseJSON;
+					console.log(data);
+					$('.error-register').html('');
 					$.each(error.errors, function (key, value) {
-						$('.error').append('<p>'+value+'</p>')
-						$('input[name="email"], input[name="password"]').addClass('error');
+						$('.error-register').append('<p>'+value+'</p>')
+						$('#register-form input, #register-form select').addClass('error');
 					});
 				});
+				return false;
 			});
 		//Login form
 			$('#login-form').on('submit', function(e){
@@ -467,15 +486,17 @@
 					},
 				})
 				.done(function(data){
-					alert('this is where we redirect');
-					return false;
+					window.location.href = '/home';
 				})
 				.fail(function(data){
+					if(data.status == 200){
+						window.location.href = '/home';
+					}
 					var error = data.responseJSON;
 					$('.error').html('');
 					$.each(error.errors, function (key, value) {
-						$('.error').append('<p>'+value+'</p>')
-						$('input[name="email"], input[name="password"]').addClass('error');
+						$('.error-login').append('<p>'+value+'</p>')
+						$('#login-form input').addClass('error');
 					});
 				});
 			});

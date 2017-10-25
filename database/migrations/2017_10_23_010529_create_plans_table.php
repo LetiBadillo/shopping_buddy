@@ -15,6 +15,13 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 20);
+            $table->integer('conversations_available')->nullable();
+            $table->integer('duration'); //in months
+            $table->string('duration_string');
+            $table->boolean('assesment');
+            $table->boolean('search');
+            $table->decimal('price')->nullable();
             $table->timestamps();
         });
     }

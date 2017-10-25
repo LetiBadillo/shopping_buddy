@@ -15,6 +15,16 @@ class CreateUsersHistoryTable extends Migration
     {
         Schema::create('users_history', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION');
+            $table->integer('plan_id')->unsigned();
+            $table->foreign('plan_id')->references('id')->on('users')->onDelete('NO ACTION');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
+            $table->integer('conversations_available');
+            $table->integer('plan_duration_number')->nullable();
+            $table->integer('conversations_count')->default('0');
+            $table->integer('renewals')->nullable();
             $table->timestamps();
         });
     }

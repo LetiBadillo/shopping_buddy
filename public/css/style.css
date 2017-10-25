@@ -369,7 +369,7 @@ margin:0 auto;
     border: none;
     background: none;
     border-bottom: 1px solid #E6E4E4;
-	color: #D2D1D1;
+	color: black;
     outline: none;
     font-size: 36px;
     margin-bottom: 0;
@@ -397,7 +397,7 @@ button.mob-btn:hover{
     font-size: 36px;
     font-family: 'Varela Round', sans-serif;
     border-bottom: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color: black;
     display: inline-block;
     padding: 8px;
 }
@@ -563,7 +563,7 @@ select {
     border: none;
     background: none;
     border-bottom: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color: black;
     outline: none;
     font-size: 32px;
     margin-bottom: 0;
@@ -591,7 +591,7 @@ select option:hover{
     border: none;
     background: none;
     border-bottom: 1px solid #E6E4E4;
-	color: #D2D1D1;
+	color: black;
     outline: none;
     font-size: 32px;
     margin-bottom: 0;
@@ -650,7 +650,7 @@ ul.rchge-icons li a{
     border: none;
     background: none;
     border-bottom: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color: black;
     outline: none;
     font-size: 32px;
     margin-bottom: 0;
@@ -682,13 +682,13 @@ ul.rchge-icons li a{
     float: left;
     width: 42%;
 }
-.login-right input[type="text"] ,.login-right input[type="password"], .login-right input[type="email"]  {
+.login-right input[type="text"] ,.login-right input[type="password"], .login-right input[type="email"], .login-right input[type="date"], .login-right select  {
     width: 100%;
     padding: 10px;
     font-weight: normal;
     background: none;
     border: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color:black;
     outline: none;
     font-size: 14px;
     margin-top: 20px;
@@ -977,7 +977,7 @@ background:#48cfc1;
     border: none;
     background: none;
     border: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color:black;
     outline: none;
     font-size: 16px;
     margin-bottom: 0;
@@ -1261,7 +1261,7 @@ input.card_logo[type="text"] {
     border: none;
     background: none;
     border: 1px solid #E6E4E4;
-    color: #D2D1D1;
+    color: black;
     outline: none;
     font-size: 16px;
     margin-bottom: 0;
@@ -2726,7 +2726,7 @@ ul.nav1{
 	.nav > li {
 		margin: 0 10px 40px 0px !important;
 	}
-	.login-right input[type="text"], .login-right input[type="password"], .login-right input[type="email"] {
+	.login-right input[type="text"], .login-right input[type="password"], .login-right input[type="email"], .login-right input[type="date"], .login-right select {
 		font-size: 13px;
 	}
 	.login-right input[type="submit"] {
@@ -2982,7 +2982,7 @@ ul.nav1{
 	.edit-for-sett input[type="date"] {
 		padding: 7px 8px 7px 35px;
 	}
-	.login-right input[type="text"], .login-right input[type="password"], .login-right input[type="email"] {
+	.login-right input[type="text"], .login-right input[type="password"], .login-right input[type="email"], .login-right input[type="date"], .login-right select {
 		padding: 7px;
 	}
 	.btm-grid h3 {
@@ -3726,10 +3726,10 @@ h3.wthree_text_info span{
 /*-- //schedule-bottom --*/
 
 .error p{
-	color: red;
+	color: rgba(229, 103, 23, 0.8);
 	margin-bottom: 0;
 }
-input.error{
+input.error, select.error{
 	border-color: rgba(229, 103, 23, 0.8);
     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
     outline: 0 none;

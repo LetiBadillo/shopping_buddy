@@ -14,10 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
+     
+    protected $fillable = ['name',
+    'last_name', 'email', 'password', 'user_type', 'birthday', 'gender'];
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,5 +27,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-   
+    public function history(){
+        return $this->belongsTo('App\History', 'user_id', 'id');
+    }
+
+    public function sale(){
+        return $this->belongsTo('App\Sale', 'user_id', 'id');
+    }
+
+    
+
 }

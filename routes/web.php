@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/my_plans', 'PlansController@my_plans')->name('plans');
+Route::get('/plans', 'PlansController@index')->name('plans-index');
+Route::post('/assignPlan', 'PlansController@create')->name('plans-create');
