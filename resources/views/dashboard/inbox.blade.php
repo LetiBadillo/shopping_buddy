@@ -14,7 +14,7 @@
             fa-pencil"></i>Escribir<div class="clearfix"></div></a></li>
             @endif
             
-            <li class=""><a href="#tab2" data-toggle="tab" aria-expanded="true"><i class="fa fa-inbox"></i>Inbox <span>9</span><div class="clearfix"></div></a></li>
+            <li class=""><a href="#tab2" class="reset" data-toggle="tab" aria-expanded="true"><i class="fa fa-inbox"></i>Inbox <span>9</span><div class="clearfix"></div></a></li>
             
             </ul>
         </nav>
@@ -335,6 +335,11 @@
             });
             
             @endif
+            
+            $('.reset').on('click', function(){
+                $('#el_chat').addClass('hidden');
+                $('#los_inbox').removeClass('hidden');
+            });
 		});
 </script>
 @endsection
