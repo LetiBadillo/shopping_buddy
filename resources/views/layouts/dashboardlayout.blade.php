@@ -221,13 +221,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
 									<ul id="menu" >
-										<li><a href="{{url('/home')}}"><i class="fa fa-tachometer"></i> <span>Dashboard</span><div class="clearfix"></div></a></li>
-                                        <li id="menu-academico" ><a href="{{('/profile')}}"><i class="fa fa-user nav_icon"></i><span>Perfil</span><div 
-										</li>
-                                    	<li id="menu-academico" ><a href="{{('/conversation')}}"><i class="fa fa-envelope nav_icon"></i><span>Inbox</span><div class="clearfix"></div></a></li>
-                                        <li><a href="{{url('/my_plans')}}"><i class="fa fa-tachometer"></i> <span>Plan</span><div class="clearfix"></div></a></li>
-    									<li id="menu-academico" ><a href="charts.html"><i class="fa fa-history"></i><span>Historial</span><div class="clearfix"></div></a></li>
-                                        <li id="menu-academico" ><a href="charts.html"><i class="fa fa-question-circle"></i><span>Preguntas frecuentes</span><div class="clearfix"></div></a></li>
+										@if(Auth::user()->user_type == 2)
+											<li><a href="{{url('/home')}}"><i class="fa fa-tachometer"></i> <span>Dashboard</span><div class="clearfix"></div></a></li>
+										@endif
+										
+										
+										@if(Auth::user()->user_type == 1 || Auth::user()->user_type == 2)
+										<li id="menu-academico" ><a href="{{('/conversation')}}"><i class="fa fa-envelope nav_icon"></i><span>Inbox</span><div class="clearfix"></div></a></li>
+										@endif
+										
+                                    	
+										@if(Auth::user()->user_type == 2)
+										<li><a href="{{url('/my_plans')}}"><i class="fa fa-tachometer"></i> <span>Plan</span><div class="clearfix"></div></a></li>
+    									<li id="menu-academico" ><a href="{{url('/history')}}"><i class="fa fa-history"></i><span>Historial</span><div class="clearfix"></div></a></li>
+										@endif
+										
 								  </ul>
 								</div>
 							  </div>

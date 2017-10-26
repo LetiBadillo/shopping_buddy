@@ -26,7 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
+    public function conversation(){
+        return $this->belongsTo('App\Conversation', 'user_id', 'id');
+    }
+    
+    public function conversation_employee(){
+        return $this->belongsTo('App\Conversation', 'assigned_employee_id', 'id');
+    }
     public function history(){
         return $this->belongsTo('App\History', 'user_id', 'id');
     }

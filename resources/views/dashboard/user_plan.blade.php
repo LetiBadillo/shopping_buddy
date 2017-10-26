@@ -5,7 +5,7 @@
 <!--heder end here-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{url('/my_plans')}}">Plans</a> </li>
+        <li class="breadcrumb-item"><a href="{{url('/my_plans')}}">Planes</a> </li>
     </ol>
 	<div class="clearfix"></div>
                    
@@ -61,9 +61,11 @@
 			{{ csrf_field() }}
 			<div class="text-center" style="margin-bottom: 13px;">	
 				<input type="hidden" name="plan_id" value="{{$plan->id}}">
-				@php
-				if
+				@if($plan->id == 2 || $plan->id == 3)
+				<button type="submit" disabled class="btn btn-defaul btn-sm"> ADQUIERELO YA</button>
+				@elseif($plan->id == 1)
 				<button type="submit" class="btn btn-defaul btn-sm"> ADQUIERELO YA</button>
+				@endif
 				</div>
 			</form>
 		  </div>
@@ -91,11 +93,11 @@
 					},
 				})
 				.done(function(data){
-					console.log(data);
+					window.location.href='/conversation';
 				})
 				.fail(function(data){
 					if(data.status == 200){
-						console.log(data);
+						window.location.href='/conversation';
 					}
 					var error = data.responseJSON;
 					$('.error-message').html('');
@@ -105,5 +107,6 @@
 				});
 			});
 		});
+		
 </script>
 @endsection

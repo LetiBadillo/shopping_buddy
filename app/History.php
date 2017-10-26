@@ -13,12 +13,21 @@ class History extends Model
     'conversations_count', 'renewals'];
 
 
+    protected $appends = ['plan', 'userName'];
+    
+    public function getPlanAttribute(){
+        return $this->plan()->get()[0];
+    }
+    public function getUserNameAttribute(){
+        return $this->client()->get()[0]['name'].' '.$this->client()->get()[0]['last_name'];
+    }
+
     public function client(){
-        return $this->hasOne('App\User', 'user_id', 'id');
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 
     public function plan(){
-        return $this->hasOne('App\History', 'plan_id', 'id');
+        return $this->belongsTo('App\Plan', 'plan_id', 'id');
     }
 
 }

@@ -5264,8 +5264,7 @@ span.prfil-img img {
 }
 .w3-agile-crd {
     padding-right: 0;
-    float: left;
-    width: 50%;
+    width: 100%;
 }
 hr {
     margin-top: 20px;
@@ -6441,4 +6440,62 @@ input.error, select.error{
 	border-color: rgba(229, 103, 23, 0.8);
     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
     outline: 0 none;
+}
+
+
+
+/****
+CHAT*/
+#chatbox, #chatbox-2{
+    width:100%;
+    border-color: #E86C46;
+    border-style: solid;
+    border-width: thin;
+    height: 300px;
+}
+#chatbox p.chat, #chatbox-2 p.chat{
+    padding: 1% 1% 1% 1%;
+    color: #3e3c3c;
+    text-align: justify;
+}
+p.chat-right{
+    background-color: #ccc;
+    border-radius: 5px;
+    float: right;
+}
+p.chat-left{
+    background-color: #E86C46;
+    border-radius: 5px;
+}
+#chatarea{
+    margin-top: 3px;
+    min-height:20px;
+    background-color: #ccc;
+    padding: 1%;
+}
+
+#chatarea div{
+    padding: 0;
+    margin: 0;
+}
+
+.form input, .form textarea{
+    width: 70%;
+    border-radius: .3%;
+    background-color:#f6f1f1;
+    border: solid #ccc .05em;
+}
+.error p{
+    color: rgba(229, 103, 23, 0.8);
+}
+
+.cremita{
+    background-color:#f6f1f1;
+}
+
+.full{
+    width: 100%;
+}
+.full p{
+    width: 60%;
 }
